@@ -27,6 +27,14 @@
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
+.container {
+  max-width: 1080px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--bs-gutter-x, 2rem);
+  padding-left: var(--bs-gutter-x, 2rem);
+}
+
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #a8a9b4;  /* The default color of the main navmenu links */
@@ -147,9 +155,8 @@ h6 {
   background-color: var(--background-color);
   position: fixed;
   top: 0;
-  left: 0;
-  bottom: 0;
-  padding: 0 15px;
+  left: 0;  bottom: 0;
+  padding: 0 20px;
   width: 300px;
   transition: all ease-in-out 0.3s;
   overflow-y: auto;
@@ -165,6 +172,9 @@ h6 {
 }
 
 .header .logo {
+  left: 0;
+  background-color: var(--nav-mobile-background-color);
+  color: var(--nav-color);
   line-height: 1;
   margin-bottom: 15px;
 }
@@ -210,17 +220,29 @@ h6 {
   .header~main,
   .header~#footer {
     margin-left: 300px;
+    padding: 0;
+  }
+  
+  /* Hide header toggle on desktop */
+  .header-toggle,
+  .header .header-toggle {
+    display: none !important;
   }
 }
 
 @media (max-width: 1199px) {
   .header {
     left: -100%;
+    background-color: var(--nav-mobile-background-color);
+    z-index: 9998;
   }
 }
 
 .header.header-show {
-  left: 0;
+  left: 0 !important;
+  background-color: var(--nav-mobile-background-color);
+  color: var(--nav-color);
+  z-index: 9998;
 }
 
 .header .header-toggle {
@@ -236,7 +258,7 @@ h6 {
   cursor: pointer;
   position: fixed;
   top: 15px;
-  right: 15px;
+  left: 15px;
   z-index: 9999;
   transition: background-color 0.3s;
 }
@@ -331,7 +353,7 @@ h6 {
 
 .navmenu .dropdown a,
 .navmenu .dropdown a:focus {
-  color: --nav-dropdown-color;
+  color: var(--nav-dropdown-color);
 }
 
 .navmenu .dropdown a:hover,
@@ -504,8 +526,8 @@ section,
 .section {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 60px 0;
-  overflow: clip;
+  padding: 40px 0;
+  overflow: hidden;
 }
 
 /*--------------------------------------------------------------
@@ -514,6 +536,7 @@ section,
 .section-title {
   padding-bottom: 60px;
   position: relative;
+  text-align: center;
 }
 
 .section-title h2 {
@@ -531,7 +554,8 @@ section,
   width: 50px;
   height: 3px;
   background: var(--accent-color);
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 0;
 }
 
@@ -550,6 +574,7 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 0;
 }
 
 .hero img {
@@ -691,6 +716,13 @@ section,
   border-radius: 0;
 }
 
+.skills-content {
+  display: flex;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .skills .progress .skill {
   color: var(--heading-color);
   padding: 0;
@@ -701,21 +733,45 @@ section,
   font-family: var(--heading-font);
 }
 
+.skills .skill-dots {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.skills .dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--default-color), transparent 90%);
+  margin-right: 10px;
+  display: inline-block;
+  transition: background-color 0.9s;
+}
+
+.skills .dot.active {
+  background-color: var(--accent-color);
+}
+
+.skills .dot.half-active {
+  background: linear-gradient(90deg, var(--accent-color) 50%, color-mix(in srgb, var(--default-color), transparent 90%) 50%);
+}
+
+.skills .skill-level {
+  display: none;
+}
+
 .skills .progress .skill .val {
   float: right;
   font-style: normal;
 }
 
 .skills .progress-bar-wrap {
-  background: color-mix(in srgb, var(--default-color), transparent 90%);
-  height: 10px;
+  display: none;
 }
 
 .skills .progress-bar {
-  width: 1px;
-  height: 10px;
-  transition: 0.9s;
-  background-color: var(--accent-color);
+  display: none;
 }
 
 /*--------------------------------------------------------------
@@ -1265,11 +1321,4 @@ section,
   font-size: 20px;
   margin-right: 8px;
   color: var(--accent-color);
-}
-
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
 }
