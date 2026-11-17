@@ -1,0 +1,74 @@
+import {cp,readFile,writeFile,mkdir,mkdtemp,rm,access} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const dir=await mkdtemp(path.join(tmpdir(),'portfolio-publishing-'));
+try {
+ for(const entry of ['_content','assets']) await cp(entry,path.join(dir,entry),{recursive:true});
+ await mkdir(path.join(dir,'_tools'));await cp('_tools/build.mjs',path.join(dir,'_tools/build.mjs'));
+ const file=path.join(dir,'_content/notes/reading-an-nmpc-controller.json');
+ const note=JSON.parse(await readFile(file,'utf8'));
+ const configFile=path.join(dir,'_content/site.json');
+ const config=JSON.parse(await readFile(configFile,'utf8'));
+ assert.equal(config.engineeringNotesEnabled,false);
+ const build=()=>{
+  const result=spawnSync(process.execPath,['_tools/build.mjs'],{cwd:dir,encoding:'utf8'});
+  if(result.status !== 0) throw new Error(result.stderr || result.error?.message || 'Build failed');
+ };
+ const read=f=>readFile(path.join(dir,f),'utf8');
+ build();
+ assert.doesNotMatch(await read('index.html'),/Engineering Notes|Draft outline/);
+ await assert.rejects(access(path.join(dir,'notes/index.html')));
+ await assert.rejects(access(path.join(dir,'notes/reading-an-nmpc-controller/index.html')));
+ note.status='published';
+ await writeFile(file,JSON.stringify(note));assert.throws(build,/Invalid datePublished/);
+ const today=new Date().toISOString().slice(0,10);
+ note.datePublished=today;note.dateModified=today;
+ await writeFile(file,JSON.stringify(note));build();
+ await assert.rejects(access(path.join(dir,'notes/index.html')));
+ await assert.rejects(access(path.join(dir,'notes/reading-an-nmpc-controller/index.html')));
+ config.engineeringNotesEnabled=true;await writeFile(configFile,JSON.stringify(config));build();
+ const article=await read('notes/reading-an-nmpc-controller/index.html');
+ assert.match(article,/"@type":"BlogPosting"/);assert.match(article,new RegExp(`"datePublished":"${today}"`));assert.doesNotMatch(article,/noindex|Draft outline/);
+ for(const f of ['index.html','notes/index.html']) {
+  const content=await read(f);
+  const link=content.match(/<a class="note-row" href="\/notes\/reading-an-nmpc-controller\/">(.*?)<\/a>/s)?.[1];
+  assert.ok(link);assert.match(link,/Published/);assert.doesNotMatch(link,/Draft/);
+  assert.match(content,/<a href="\/notes\/"[^>]*>Engineering Notes<\/a>/);
+ }
+ assert.doesNotMatch(await read('notes/index.html'),/noindex/);
+ assert.match(await read('sitemap.xml'),/https:\/\/simone-contorno.github.io\/notes\/reading-an-nmpc-controller\//);
+ assert.doesNotMatch(await read('notes/index.html'),/controller-benchmarks/);
+ config.engineeringNotesEnabled=false;await writeFile(configFile,JSON.stringify(config));build();
+ await assert.rejects(access(path.join(dir,'notes/index.html')));
+ await assert.rejects(access(path.join(dir,'notes/reading-an-nmpc-controller/index.html')));
+ assert.doesNotMatch(await read('sitemap.xml'),/\/notes\//);
+ config.engineeringNotesEnabled=true;await writeFile(configFile,JSON.stringify(config));
+ note.datePublished='2025-02-31';await writeFile(file,JSON.stringify(note));assert.throws(build,/Invalid datePublished/);
+ note.datePublished='2999-01-01';await writeFile(file,JSON.stringify(note));assert.throws(build,/Invalid datePublished/);
+ note.datePublished=today;note.dateModified='2020-01-01';await writeFile(file,JSON.stringify(note));assert.throws(build,/Modification predates publication/);
+ note.status='draft';note.datePublished=null;note.dateModified=null;await writeFile(file,JSON.stringify(note));build();
+ await assert.rejects(access(path.join(dir,'notes/reading-an-nmpc-controller/index.html')));
+ await assert.rejects(access(path.join(dir,'notes/index.html')));
+ assert.doesNotMatch(await read('sitemap.xml'),/\/notes\//);
+ assert.doesNotMatch(await read('index.html'),/Engineering Notes|reading-an-nmpc-controller/);
+ assert.equal(JSON.parse(await read('_content/notes/reading-an-nmpc-controller.json')).status,'draft');
+ console.log('PASS: publication lifecycle, date guards, conditional notes navigation/list/sitemap and stale draft output removal.');
+ // Exercise enabled and then disabled consulting in this fixture only.
+ config.engineeringNotesEnabled=false;
+ assert.equal(config.consultingEnabled,false,'Repository default must remain disabled');
+ assert.doesNotMatch(await read('contact/index.html'),/consulting|Independent Robotics Architecture/);
+ config.consultingEnabled=true;await writeFile(configFile,JSON.stringify(config));build();
+ const enabled=await read('contact/index.html');
+ assert.match(enabled,/Independent Robotics Architecture &amp; Integration Review/);
+ assert.match(enabled,/prior written employer authorisation and a case-by-case conflict-of-interest review/);
+ assert.match(enabled,/No proprietary or confidential information is used or disclosed/);
+ assert.match(enabled,/mailto:simone.contorno@outlook.it\?subject=Robotics%20review%20enquiry/);
+ assert.doesNotMatch(enabled,/<a href="\/consulting/);
+ assert.doesNotMatch(await read('sitemap.xml'),/consulting/);
+ config.consultingEnabled=false;await writeFile(configFile,JSON.stringify(config));build();
+ assert.doesNotMatch(await read('contact/index.html'),/id="consulting"|Independent Robotics Architecture|employer authorisation/);
+ config.consultingEnabled='false';await writeFile(configFile,JSON.stringify(config));assert.throws(build,/must be a boolean/);
+ console.log('PASS: consulting disabled by default; enabled section includes conditions; disabling removes output; invalid flags rejected.');
+} finally {await rm(dir,{recursive:true,force:true});}

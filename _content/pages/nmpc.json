@@ -1,0 +1,8 @@
+{
+  "path": "/work/autonomous-vehicle-control/",
+  "title": "Nonlinear MPC for Autonomous Vehicles \u2014 Simone Contorno",
+  "description": "MyNMPC: Simone Contorno\u2019s 2023 master\u2019s research at LS2N, using C++, ROS 2, SQP and ProxQP. Read the thesis and source code.",
+  "body": "nmpc.html",
+  "section": "/work/",
+  "schemaType": "CreativeWork"
+}

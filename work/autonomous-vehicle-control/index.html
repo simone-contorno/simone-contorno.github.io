@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nonlinear MPC for Autonomous Vehicles — Simone Contorno</title>
+<meta name="description" content="MyNMPC: Simone Contorno’s 2023 master’s research at LS2N, using C++, ROS 2, SQP and ProxQP. Read the thesis and source code.">
+<meta name="author" content="Simone Contorno">
+<meta name="theme-color" content="#1c2e45">
+
+<link rel="canonical" href="https://simone-contorno.github.io/work/autonomous-vehicle-control/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Simone Contorno">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Nonlinear MPC for Autonomous Vehicles — Simone Contorno">
+<meta property="og:description" content="MyNMPC: Simone Contorno’s 2023 master’s research at LS2N, using C++, ROS 2, SQP and ProxQP. Read the thesis and source code.">
+<meta property="og:url" content="https://simone-contorno.github.io/work/autonomous-vehicle-control/">
+<meta property="og:image" content="https://simone-contorno.github.io/assets/img/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Simone Contorno — Robotics Software Engineer. Robotics Software for Autonomous Systems.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nonlinear MPC for Autonomous Vehicles — Simone Contorno">
+<meta name="twitter:description" content="MyNMPC: Simone Contorno’s 2023 master’s research at LS2N, using C++, ROS 2, SQP and ProxQP. Read the thesis and source code.">
+<meta name="twitter:image" content="https://simone-contorno.github.io/assets/img/social-card.png">
+<meta name="twitter:image:alt" content="Simone Contorno — Robotics Software Engineer">
+
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css?v=bd44bf95a468">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://simone-contorno.github.io/#person","name":"Simone Contorno","jobTitle":"Robotics Software Engineer","url":"https://simone-contorno.github.io/","image":"https://simone-contorno.github.io/assets/img/optimized/simone-contorno-800.webp","sameAs":["https://www.linkedin.com/in/simone-contorno","https://github.com/simone-contorno"],"knowsAbout":["Robotics software","Autonomous systems","ROS 2","C++","Navigation","Control","Embedded Linux"]},{"@type":"WebPage","@id":"https://simone-contorno.github.io/work/autonomous-vehicle-control/#webpage","url":"https://simone-contorno.github.io/work/autonomous-vehicle-control/","name":"Nonlinear MPC for Autonomous Vehicles — Simone Contorno","description":"MyNMPC: Simone Contorno’s 2023 master’s research at LS2N, using C++, ROS 2, SQP and ProxQP. Read the thesis and source code.","inLanguage":"en","mainEntity":{"@id":"https://simone-contorno.github.io/work/autonomous-vehicle-control/#project"}},{"@type":"CreativeWork","@id":"https://simone-contorno.github.io/work/autonomous-vehicle-control/#project","name":"Nonlinear MPC for Autonomous Vehicles","description":"MyNMPC: Simone Contorno’s 2023 master’s research at LS2N, using C++, ROS 2, SQP and ProxQP. Read the thesis and source code.","url":"https://simone-contorno.github.io/work/autonomous-vehicle-control/","author":{"@id":"https://simone-contorno.github.io/#person"}}]}</script>
+<script src="/assets/js/site.js?v=168ab6acbba5" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="/" aria-label="Simone Contorno, home"><span class="brand-mark" aria-hidden="true">SC</span><span>Simone Contorno</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Main navigation"><a href="/">Home</a><a href="/about/">Experience</a><a href="/work/" aria-current="page">Selected Work</a><a href="/contact/">Contact</a></nav>
+</div></header>
+<main id="main" tabindex="-1"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/work/">Selected Work</a><span aria-hidden="true"> / </span><span>Vehicle control</span></nav><header class="page-intro"><p class="eyebrow">Academic · LS2N / EMARO+ · 2023</p><h1>Nonlinear MPC for <span class="accent">Autonomous Vehicles</span></h1><p class="lede">MyNMPC is the C++ and ROS 2 implementation developed for my master’s research at LS2N through EMARO+.</p></header>
+<div class="two-column section"><aside class="aside"><h2>Research Details</h2><dl class="meta-list"><dt>Period</dt><dd>2023</dd><dt>Institutions</dt><dd>LS2N, University of Genoa, École Centrale de Nantes</dd><dt>Repository</dt><dd>MyNMPC</dd><dt>Stack</dt><dd>C++, ROS 2 Foxy, Eigen, ProxQP</dd></dl><figure class="project-image"><a href="https://github.com/simone-contorno/mynmpc/blob/main/CONTORNO_Simone_Thesis.pdf"><img src="/assets/img/optimized/nmpc-thesis-480.webp" srcset="/assets/img/optimized/nmpc-thesis-480.webp 480w, /assets/img/optimized/nmpc-thesis-960.webp 960w" sizes="(max-width: 760px) 80vw, 300px" width="480" height="679" loading="lazy" alt="Cover of Simone Contorno’s 2023 master’s thesis, Nonlinear Model Predictive Control for Self-Driving Vehicles"></a><figcaption>Master’s thesis, 2023. Open the PDF on GitHub.</figcaption></figure></aside><div class="prose"><h2>Context and Problem</h2><p>The research studied nonlinear model predictive control for vehicle motion: using a model to predict a trajectory and choose control inputs under constraints.</p><h2>My Contribution</h2><p>This was my master’s research project. I worked on the NMPC formulation and its C++/ROS 2 implementation, and documented the method and experiments in the thesis.</p><h2>Technical Approach</h2><p>The implementation has three main layers:</p><ul><li><strong>Model:</strong> vehicle dynamics and their derivatives.</li><li><strong>MPC:</strong> the optimisation problem, solved through Sequential Quadratic Programming (SQP) with ProxQP handling the quadratic subproblems.</li><li><strong>Controller:</strong> the ROS 2 interface connecting the optimiser to the robot.</li></ul><p>The code includes different vehicle models and examples for simulation and ROSbot. Eigen is used for the matrix operations.</p><h2>Results and Evidence</h2><p>The research produced the MyNMPC implementation and the thesis, <cite>Nonlinear Model Predictive Control for Self-Driving Vehicles</cite>. I integrated and tested the controller on ROSbot 2R and Renault Zoe, alongside simulation-based evaluation. The thesis records the method and experimental conditions.</p><h2>Research Environment</h2><p>The implementation and examples target ROS 2 Foxy. The repository preserves the software used in the 2023 research.</p><h2>Links</h2><ul class="source-list"><li><a href="https://github.com/simone-contorno/mynmpc">MyNMPC repository and examples</a></li><li><a href="https://github.com/simone-contorno/mynmpc/blob/main/CONTORNO_Simone_Thesis.pdf">Master’s thesis (PDF on GitHub)</a></li></ul><p><a href="/work/proxmpc/">ProxMPC</a> develops this research code into a separate project with reusable packages, Nav2 integration and a controller comparison framework.</p></div></div></div>
+</main>
+<footer class="site-footer"><div class="container footer-inner"><p>© Simone Contorno · Robotics Software Engineer</p><nav aria-label="Social links"><a href="https://github.com/simone-contorno">GitHub</a><a href="https://www.linkedin.com/in/simone-contorno">LinkedIn</a><a href="/contact/">Contact Me</a></nav><p class="provenance">Original site: Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>.</p></div></footer>
+</body>
+</html>

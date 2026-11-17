@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://simone-contorno.github.io/sitemap.xml

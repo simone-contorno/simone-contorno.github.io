@@ -1,0 +1,10 @@
+import { execFileSync } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+const files = [...JSON.parse(await readFile('_tools/generated.json','utf8')), 'sitemap.xml','robots.txt'];
+const hashes = async () => Promise.all(files.map(async file => createHash('sha256').update(await readFile(file)).digest('hex')));
+const before = await hashes();
+execFileSync(process.execPath, ['_tools/build.mjs'], {stdio:'inherit'});
+if (JSON.stringify(before) !== JSON.stringify(await hashes())) throw new Error('Generated files were stale. Rebuild and rerun checks.');
+execFileSync('python3', ['_tools/check.py'], {stdio:'inherit'});
+execFileSync(process.execPath, ['_tools/check-publishing.mjs'], {stdio:'inherit'});

@@ -1,0 +1,16 @@
+{
+  "name": "simone-contorno-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node _tools/build.mjs",
+    "check": "node _tools/check.mjs",
+    "preview": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "test:browser": "node _tools/browser-check.mjs",
+    "render:social": "node _tools/render-social.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

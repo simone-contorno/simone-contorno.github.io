@@ -1,0 +1,32 @@
+{
+  "url": "https://simone-contorno.github.io",
+  "name": "Simone Contorno",
+  "role": "Robotics Software Engineer",
+  "email": "simone.contorno@outlook.it",
+  "github": "https://github.com/simone-contorno",
+  "linkedin": "https://www.linkedin.com/in/simone-contorno",
+  "navigation": [
+    [
+      "Home",
+      "/"
+    ],
+    [
+      "Experience",
+      "/about/"
+    ],
+    [
+      "Selected Work",
+      "/work/"
+    ],
+    [
+      "Engineering Notes",
+      "/notes/"
+    ],
+    [
+      "Contact",
+      "/contact/"
+    ]
+  ],
+  "consultingEnabled": false,
+  "engineeringNotesEnabled": false
+}

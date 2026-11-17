@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProxMPC: C++ nonlinear MPC for ROS 2 and Nav2 — Simone Contorno</title>
+<meta name="description" content="A reusable C++ NMPC core and Nav2 controller plugin, with simulation scenarios, controller comparisons and documented testing limits.">
+<meta name="author" content="Simone Contorno">
+<meta name="theme-color" content="#1c2e45">
+
+<link rel="canonical" href="https://simone-contorno.github.io/work/proxmpc/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Simone Contorno">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="ProxMPC: C++ nonlinear MPC for ROS 2 and Nav2 — Simone Contorno">
+<meta property="og:description" content="A reusable C++ NMPC core and Nav2 controller plugin, with simulation scenarios, controller comparisons and documented testing limits.">
+<meta property="og:url" content="https://simone-contorno.github.io/work/proxmpc/">
+<meta property="og:image" content="https://simone-contorno.github.io/assets/img/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Simone Contorno — Robotics Software Engineer. Robotics Software for Autonomous Systems.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ProxMPC: C++ nonlinear MPC for ROS 2 and Nav2 — Simone Contorno">
+<meta name="twitter:description" content="A reusable C++ NMPC core and Nav2 controller plugin, with simulation scenarios, controller comparisons and documented testing limits.">
+<meta name="twitter:image" content="https://simone-contorno.github.io/assets/img/social-card.png">
+<meta name="twitter:image:alt" content="Simone Contorno — Robotics Software Engineer">
+
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css?v=bd44bf95a468">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://simone-contorno.github.io/#person","name":"Simone Contorno","jobTitle":"Robotics Software Engineer","url":"https://simone-contorno.github.io/","image":"https://simone-contorno.github.io/assets/img/optimized/simone-contorno-800.webp","sameAs":["https://www.linkedin.com/in/simone-contorno","https://github.com/simone-contorno"],"knowsAbout":["Robotics software","Autonomous systems","ROS 2","C++","Navigation","Control","Embedded Linux"]},{"@type":"WebPage","@id":"https://simone-contorno.github.io/work/proxmpc/#webpage","url":"https://simone-contorno.github.io/work/proxmpc/","name":"ProxMPC: C++ nonlinear MPC for ROS 2 and Nav2 — Simone Contorno","description":"A reusable C++ NMPC core and Nav2 controller plugin, with simulation scenarios, controller comparisons and documented testing limits.","inLanguage":"en","mainEntity":{"@id":"https://simone-contorno.github.io/work/proxmpc/#project"}},{"@type":"SoftwareSourceCode","@id":"https://simone-contorno.github.io/work/proxmpc/#project","name":"ProxMPC: C++ nonlinear MPC for ROS 2 and Nav2","description":"A reusable C++ NMPC core and Nav2 controller plugin, with simulation scenarios, controller comparisons and documented testing limits.","url":"https://simone-contorno.github.io/work/proxmpc/","author":{"@id":"https://simone-contorno.github.io/#person"},"codeRepository":"https://github.com/simone-contorno/prox_mpc","programmingLanguage":"C++","license":"https://www.apache.org/licenses/LICENSE-2.0"}]}</script>
+<script src="/assets/js/site.js?v=168ab6acbba5" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="/" aria-label="Simone Contorno, home"><span class="brand-mark" aria-hidden="true">SC</span><span>Simone Contorno</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Main navigation"><a href="/">Home</a><a href="/about/">Experience</a><a href="/work/" aria-current="page">Selected Work</a><a href="/contact/">Contact</a></nav>
+</div></header>
+<main id="main" tabindex="-1"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/work/">Selected Work</a><span aria-hidden="true"> / </span><span>ProxMPC</span></nav><header class="page-intro"><p class="eyebrow">Independent · Open source</p><h1><span class="accent">ProxMPC</span></h1><p class="lede">A reusable C++ nonlinear model predictive control core and a ROS 2/Nav2 controller plugin.</p><div class="actions"><a class="button" href="https://github.com/simone-contorno/prox_mpc">View Repository <span aria-hidden="true">↗</span></a></div></header>
+<div class="two-column section"><aside class="aside"><h2>Project Details</h2><dl class="meta-list"><dt>Context</dt><dd>Independent open source</dd><dt>Platform</dt><dd>ROS 2 Jazzy / Nav2</dd><dt>Solver</dt><dd>SQP with ProxQP</dd><dt>Licence</dt><dd>Apache 2.0</dd><dt>Testing</dt><dd>Simulation benchmarks</dd></dl></aside><div class="prose"><h2>Context and Problem</h2><p>ProxMPC builds on my <a href="/work/autonomous-vehicle-control/">MyNMPC research</a>. The aim is to make the control engine reusable, connect it to Nav2 and evaluate its behaviour alongside other navigation controllers.</p><h2>My Contribution</h2><p>I maintain ProxMPC as an independent open-source project. Its scope includes the controller architecture, ROS 2/Nav2 integration and the simulation benchmark workflow. The repository records the implementation, tests and changes.</p><h2>Technical Approach</h2><ul><li><strong>Control core:</strong> SQP repeatedly constructs quadratic subproblems, solved with ProxQP. Eigen handles linear algebra.</li><li><strong>Nav2 plugin:</strong> connects the core to navigation inputs and command output, with lifecycle and failure handling.</li><li><strong>Vehicle models:</strong> separate model plugins allow unicycle and bicycle dynamics to use the same engine.</li><li><strong>Obstacle handling:</strong> supports costmap-based inputs and predicted obstacle motion. The documentation distinguishes reactive and predictive configurations.</li></ul><h2>Results and Evidence</h2><p>The benchmark framework runs repeatable scenarios covering open paths, static obstacles and moving obstacles. It compares ProxMPC with DWB, MPPI, Regulated Pure Pursuit, Graceful and Vector Pursuit, recording tracking, computation time, clearance and collisions.</p><p>The published comparisons use a simulated kinematic plant on a specified x86-64 host. Configuration files, execution commands and the comparison report are available in the repository.</p><h2>Links</h2><ul class="source-list"><li><a href="https://github.com/simone-contorno/prox_mpc">Repository, demonstration and build instructions</a></li><li><a href="https://github.com/simone-contorno/prox_mpc/blob/main/doc/architecture.md">Package architecture</a></li><li><a href="https://github.com/simone-contorno/prox_mpc/blob/main/doc/controller-comparison-results.md">Benchmark methodology and results</a></li></ul></div></div></div>
+</main>
+<footer class="site-footer"><div class="container footer-inner"><p>© Simone Contorno · Robotics Software Engineer</p><nav aria-label="Social links"><a href="https://github.com/simone-contorno">GitHub</a><a href="https://www.linkedin.com/in/simone-contorno">LinkedIn</a><a href="/contact/">Contact Me</a></nav><p class="provenance">Original site: Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>.</p></div></footer>
+</body>
+</html>

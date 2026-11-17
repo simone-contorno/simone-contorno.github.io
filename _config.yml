@@ -1,0 +1,11 @@
+# Generated HTML is served unchanged by GitHub Pages. No plugins required.
+exclude:
+  - node_modules
+  - package.json
+  - package-lock.json
+  - README.md
+  - LICENSE
+  - BOOTSTRAPMADE LICENSE
+  - .local
+  - docs
+  - _docs

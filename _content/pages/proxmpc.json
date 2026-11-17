@@ -1,0 +1,9 @@
+{
+  "path": "/work/proxmpc/",
+  "title": "ProxMPC: C++ nonlinear MPC for ROS 2 and Nav2 \u2014 Simone Contorno",
+  "description": "A reusable C++ NMPC core and Nav2 controller plugin, with simulation scenarios, controller comparisons and documented testing limits.",
+  "body": "proxmpc.html",
+  "section": "/work/",
+  "schemaType": "SoftwareSourceCode",
+  "repository": "https://github.com/simone-contorno/prox_mpc"
+}
